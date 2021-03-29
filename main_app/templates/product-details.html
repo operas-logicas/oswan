@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="shop-wrapper fluid-padding-2 pt-150 pb-70" style="padding-top: 150px !important">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid-list-product-wrapper tab-content">
+                    <div id="new-product" class="product-grid product-view tab-pane active product-list">
+                        <div class="row">
+                            <div class="product-width col">
+                                <div class="product-wrapper mb-35">
+                                    <div class="product-img">
+                                        <img src="{{ motorcycle.productImage.url }}" alt="">
+                                        <div class="product-item-dec">
+                                            <ul>
+                                                <li>{{ motorcycle.year }}</li>
+                                                <li>{{ motorcycle.transStyle|upper }}</li>
+                                                <li>{{ motorcycle.engineStyle|upper }}</li>
+                                                <li>{{ motorcycle.engineCapacity }} CC</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-list-details">
+                                        <h2>{{ motorcycle.model }}</h2>
+                                        <div class="product-title-spreed">
+                                            <span>{{ motorcycle.horsePower }} RPM</span>
+                                        </div>
+                                        <div class="product-price">
+                                            <span>${{ motorcycle.price|floatformat:0 }}</span>
+                                        </div>
+                                        <div class="best-seller-text pl-0">
+                                            <h3>Seller: <a href="{% url 'profile' motorcycle.user.username %}">{{ motorcycle.user.username }}</a></h3>
+                                        </div>
+                                        <p>{{ motorcycle.description }}</p>
+                                        <div class="quickview-plus-minus">
+                                            <div class="shop-list-cart">
+                                                <a href="cart.html"><i class="ti-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                                            <div class="quickview-btn-wishlist">
+                                                <a id="favorite" data-id="{{ motorcycle.id }}" class="btn-hover cr-btn {% for fav in favs %}{% if fav == motorcycle.id %}favorited{% endif %}{% endfor %}" title="Wish List" href="">
+                                                    <span><i class="icofont icofont-heart-alt"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

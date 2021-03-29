@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="login-register-area ptb-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 ml-auto mr-auto">
+                <div class="login-register-wrapper">
+                    <div class="tab-content">
+                        <div id="lg1" class="tab-pane active">
+                            <div class="login-form-container">
+                                <div class="">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}"
+                                                role="alert">{{ message }}</div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="login-form">
+                                    <form action="." method="post">
+                                        {% csrf_token %}
+                                        {% for field in form %}
+                                            {{ field }}
+                                        {% endfor %}
+                                        <div class="button-box"></div>
+                                            <button type="submit" class="btn-style cr-btn"><span>Login</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}           
